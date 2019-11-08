@@ -1,0 +1,59 @@
+版本：V0.1
+
+-------------    分割线        ------------------------
+
+1、开发中的类、函数等命令中的数字
+	2 -- 英文谐音的 to
+	3 -- 英文谐音的 and
+	4 -- 英文谐音的 for
+	
+	若这些数字在名称开头和中间，则代表上述含义；若在末尾，则是正常的数字含义
+	
+2、maven 模块中的web代表dubbo消费者，暴露接口
+
+3、字符串命名可用str简写
+
+4、异常处理
+	如果该异常是该类能够处理，有其他补救措施，则捕获，打印日志并处理
+	如果该异常是该类不能处理，则抛出至调用方，不打印日志
+	
+5、web API的url中，url路径的词组使用中划线，参数中的词组使用下划线
+
+6、dubbo系列类命名
+	dubbo API 不加API字样，因为会暴露在zookeeper
+	dubbo 提供者实现类，在API后面加impl，并且和API放在同名包下（不同模块），有不同实现类的，在类名前面加词限定
+	dubbo 消费者类，在web模块或者需要使用其他提供者的提供者类中，建立消费者类，命名资源名+Consumer，同名映射所有提供者接口
+	spring mvc 控制器类（接收http），资源名+Controller，如RedisController
+	
+7、配置文件规范
+	dubbo和spring配置文件都放在resources/spring文件夹下
+	spring配置文件
+		通常以spring-×.xml 格式命名
+		一般开启注解放、扫描包配置、读取配置文件等在spring-context.xml里
+		mvc配置文件为spring-mvc-servlet.xml
+		
+	dubbo配置文件
+		通常以dubbo-×.xml 格式命名,因为有的提供者里面也有消费者，所以dubbo 提供者为 dubbo-service-×（该模块名称，如fastdfs。如果模块下有子模块，可以再加，如client-cas）.xml, dubbo消费者  dubbo-consumer-×（该模块名称，如fastdfs）.xml
+		配置文件里的应用名称，提供者为service-×（该模块名称，如fastdfs），消费者为consumer-×（该模块名称，如fastdfs），跟随配置文件名称，去掉dubbo前缀
+
+8、类命名
+	优先使用包路径表示类含义，避免类名重复可在类名后面加上包路径最后一个词。如×××.core.SendSmsCore
+	或者减少一层包名，将包名的词加到类上面，如×××.impl.Msg改为×××.MsgImpl
+	
+9、请求调用层级关系
+	http业务/RESTful请求  -> controller -> service(highdsa.web.类名Svc) -> 消费者类（待定）  -> zookeeper -> 服务提供类(highdsa.service.×××.类名) -> 数据库/缓存/文件服务器等
+	                		     |                                                                                       |
+	                                                                       
+10、实体类实例化命名
+	类名取类首字母小写的驼峰;
+	实体类字段命名可省略系统属性，如sysUserId可为userId	 
+	
+11、标点符号规范
+	Java类、XML等配置文件、前端HTML和js等，逗号（,）、句号（.）、分号（;）、感叹号（!）一律使用英文标点，其余视实际情况而定. 
+	                                                                    
+12、log4j日志打印
+	如果只是表明程序执行，没有打印变量值 —— trace
+	既表明程序执行到此，又打印变量值 —— debug
+	打印有用的信息 —— info
+	程序出错，但是不影响整体执行，有补救措施 —— warn
+	程序出错，并抛出出错，影响此业务线执行 —— error                                                                    
