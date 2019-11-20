@@ -50,6 +50,7 @@ ProjectName and Description
   - [如何参与开源项目](#如何参与开源项目)
 - [版本控制](#版本控制)
 - [作者](#作者)
+- [赞助❤](#赞助)
 - [鸣谢](#鸣谢)
 
 ### 上手指南
@@ -154,6 +155,14 @@ xxx@xxxx
 - [GitHub Pages](https://pages.github.com)
 - [Animate.css](https://daneden.github.io/animate.css)
 - [xxxxxxxxxxxxxx](https://connoratherton.com/loaders)
+
+### 赞助
+
+If you like this project and want to sponsor the author, you can reward the author using Wechat or Alipay by scanning the following QR code.
+
+<img src="docs/images/reward_wechat.png" width="200"/><br>
+
+<img src="docs/images/reward_alipay.png" width="200"/><br>
 
 <!-- links -->
 
