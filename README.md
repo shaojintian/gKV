@@ -35,7 +35,17 @@ ProjectName and Description
 
 </p>
 
- 本篇README.md面向开发者
+ 本篇README.md面向开发者 
+
+## 特点
+
+1. xxx
+2. xxx
+3. xxx
+
+
+
+
 
 ## 目录
 
