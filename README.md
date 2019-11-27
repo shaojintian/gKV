@@ -147,9 +147,9 @@ filetree
 
 ### 作者
 
-xxx@xxxx
+E-mail: sjt@hnu.edu.cn
 
-知乎:xxxx  &ensp; qq:xxxxxx    
+知乎:[笃行er](https://www.zhihu.com/people/sjt_ai/activities)  &ensp; qq:1075803623    
 
  *您也可以在贡献者名单中参看所有参与该项目的开发者。*
 
