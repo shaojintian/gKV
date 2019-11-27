@@ -170,10 +170,10 @@ E-mail: sjt@hnu.edu.cn
 
 If you like this project and want to sponsor the author, you can reward the author using Wechat or Alipay by scanning the following QR code.
 
-<img src="docs/images/reward_wechat.png" width="200"/><br>
-
-<img src="docs/images/reward_alipay.png" width="200"/><br>
-
+<figure class="half">
+  <img src="docs/images/reward_wechat.png" width="200" height="260"/>
+  <img src="docs/images/reward_alipay.png" width="200" height="260"/>
+</figure>
 <!-- links -->
 
 [your-project-path]: shaojintian/Best_README_template
