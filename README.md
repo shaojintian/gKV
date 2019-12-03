@@ -10,6 +10,17 @@ ProjectName and Description
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+<a title="Build Status" target="_blank" href="https://travis-ci.com/panjf2000/gnet"><img src="https://img.shields.io/travis/com/panjf2000/gnet?style=flat-square&logo=appveyor"></a>
+<a title="Codecov" target="_blank" href="https://codecov.io/gh/panjf2000/gnet"><img src="https://img.shields.io/codecov/c/github/panjf2000/gnet?style=flat-square&logo=appveyor"></a>
+<a title="Supported Platforms" target="_blank" href="https://github.com/panjf2000/gnet"><img src="https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-549688?style=flat-square&logo=appveyor"></a>
+<a title="Require Go Version" target="_blank" href="https://github.com/panjf2000/gnet"><img src="https://img.shields.io/badge/go-%3E%3D1.9-30dff3?style=flat-square&logo=appveyor"></a>
+<a title="Release" target="_blank" href="https://github.com/panjf2000/gnet/releases"><img src="https://img.shields.io/github/release/panjf2000/gnet.svg?color=161823&style=flat-square&logo=appveyor"></a>
+<br/>
+<a title="" target="_blank" href="https://golangci.com/r/github.com/panjf2000/gnet"><img src="https://golangci.com/badges/github.com/panjf2000/gnet.svg"></a>
+<a title="Go Report Card" target="_blank" href="https://goreportcard.com/report/github.com/panjf2000/gnet"><img src="https://goreportcard.com/badge/github.com/panjf2000/gnet?style=flat-square"></a>
+<a title="Doc for gnet" target="_blank" href="https://gowalker.org/github.com/panjf2000/gnet?lang=zh-CN"><img src="https://img.shields.io/badge/api-reference-8d4bbb.svg?style=flat-square&logo=appveyor"></a>
+<a title="gnet on Sourcegraph" target="_blank" href="https://sourcegraph.com/github.com/panjf2000/gnet?badge"><img src="https://sourcegraph.com/github.com/panjf2000/gnet/-/badge.svg?style=flat-square"></a>
+<a title="Mentioned in Awesome Go" target="_blank" href="https://github.com/avelino/awesome-go#networking"><img src="https://awesome.re/mentioned-badge-flat.svg"></a>
 
 <!-- PROJECT LOGO -->
 <br />
@@ -37,11 +48,27 @@ ProjectName and Description
 
  本篇README.md面向开发者 
 
-## 特点
+# 🚀 功能
 
-1. xxx
-2. xxx
-3. xxx
+- [x] [高性能](#-性能测试) 的基于多线程/Go程网络模型的 event-loop 事件驱动
+- [x] 内置 Round-Robin 轮询负载均衡算法
+- [x] 内置 goroutine 池，由开源库 [ants](https://github.com/panjf2000/ants) 提供支持
+- [x] 内置 bytes 内存池，由开源库 [pool](https://github.com/gobwas/pool/) 提供支持
+- [x] 简洁的 APIs
+- [x] 基于 Ring-Buffer 的高效内存利用
+- [x] 支持多种网络协议：TCP、UDP、Unix Sockets
+- [x] 支持两种事件驱动机制：Linux 里的 epoll 以及 FreeBSD 里的 kqueue
+- [x] 支持异步写操作
+- [x] 灵活的事件定时器
+- [x] SO_REUSEPORT 端口重用
+- [x] 内置多种编解码器，支持对 TCP 数据流分包：LineBasedFrameCodec, DelimiterBasedFrameCodec, FixedLengthFrameCodec 和 LengthFieldBasedFrameCodec，参考自 [netty codec](https://github.com/netty/netty/tree/netty-4.1.43.Final/codec/src/main/java/io/netty/handler/codec)，而且支持自定制编解码器
+- [x] 支持 Windows 平台，基于 ~~IOCP 事件驱动机制~~ Go 标准网络库
+- [ ] 加入更多的负载均衡算法：随机、最少连接、一致性哈希等等
+- [ ] 支持 TLS
+- [ ] 实现 `gnet` 客户端
+
+
+
 
 
 
@@ -56,6 +83,8 @@ ProjectName and Description
 - [开发的架构](#开发的架构)
 - [部署](#部署)
 - [使用到的框架](#使用到的框架)
+- [核心设计](#💡核心设计)
+- [性能测试](#📊性能测试)
 - [贡献者](#贡献者)
   - [如何参与开源项目](#如何参与开源项目)
 - [版本控制](#版本控制)
@@ -124,6 +153,18 @@ filetree
 - [xxxxxxx](https://getbootstrap.com)
 - [xxxxxxx](https://jquery.com)
 - [xxxxxxx](https://laravel.com)
+
+
+## 💡核心设计
+
+1. xxxxx
+2. xxxxx
+3. xxxxx
+
+## 📊性能测试
+ 1. xxxxx
+ 2. xxxxx
+ 
 
 ### 贡献者
 
