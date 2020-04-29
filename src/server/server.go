@@ -22,5 +22,5 @@ func Handle(conn net.Conn) {
 	//Receive operation from client
 	operation := ReceiveFromClient(conn)
 	//Send2Client
-	Send2Client(string(operation[0:3]), conn)
+	Send2Client(string(operation), conn)
 }
