@@ -12,7 +12,7 @@ import (
 )
 
 //socket client based on TCP
-
+//
 func init() {
 	log.SetFlags(log.Ldate | log.Lshortfile)
 }
