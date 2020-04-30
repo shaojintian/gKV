@@ -1,23 +1,26 @@
 package src
 
 import (
-	"fmt"
 	"gKV/utils"
+	"log"
 	"net"
 	"strings"
 )
 
 func ReceiveFromClient(conn net.Conn) []byte {
+	log.Println("start read data from client ...")
 	operation := make([]byte, 1024)
 	_, err := conn.Read(operation)
 	utils.CheckErr(err)
+	log.Println("read operation:" + string(operation) + " FROM client successfully!")
 	return operation
 }
 
 func Send2Client(res string, conn net.Conn) {
+	log.Println("start send " + res + " to client...!")
 	_, err := conn.Write([]byte(res))
 	utils.CheckErr(err)
-	fmt.Println("return result to client successfully!")
+	log.Println("return " + res + " to client successfully!\n")
 }
 
 func Handle(conn net.Conn) {
@@ -37,6 +40,8 @@ func doHandle(operation []byte) string {
 	opStr := strings.TrimSpace(string(operation))
 	//split opStr set k v
 	opts := strings.Split(opStr, " ")
+	//
+	log.Println(opts)
 	if len(opts) == 3 {
 		if opts[0] == "set" {
 			res = doSet(opts[1:])
@@ -45,6 +50,9 @@ func doHandle(operation []byte) string {
 		if opts[0] == "get" {
 			res = doGet(opts)
 		}
+	} else if opts[0] == "size" {
+		res = string(zMapSize())
+
 	} else {
 		res = "(error) ERR wrong number of arguments for  command"
 	}

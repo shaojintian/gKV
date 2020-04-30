@@ -40,8 +40,8 @@ func main() {
 
 	//send data to Server
 	//like
-	//127.0.0.1:xxxx> set k v
 	for {
+		//127.0.0.1:xxxx> set k v
 		fmt.Print(addr + "> ")
 		operation, err := oreader.ReadString('\n')
 		utils.CheckErr(err)
