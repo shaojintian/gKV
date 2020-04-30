@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"strings"
+	"reflect"
 )
 
 func ReceiveFromClient(conn net.Conn) []byte {
@@ -50,11 +51,10 @@ func doHandle(operation []byte) string {
 		if opts[0] == "get" {
 			res = doGet(opts)
 		}
-	} else if opts[0] == "size" {
-		res = string(zMapSize())
-
 	} else {
 		res = "(error) ERR wrong number of arguments for  command"
+		log.Printf("zMap size is:%d\n",zMapSize())
+		printZMap()
 	}
 
 	return res
@@ -65,8 +65,11 @@ func doSet(opts []string) string {
 	return utils.OK
 }
 
+//bug:cannt get v ?????
 func doGet(opts []string) string {
+	log.Println("k is: "+opts[1])
 	v, ok := GlobalMap[opts[1]]
+	log.Println(ok)
 	if ok {
 		return v
 	}

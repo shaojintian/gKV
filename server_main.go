@@ -26,7 +26,7 @@ func main() {
 
 	//----------start server-------------------------------
 	//listen port
-	netListen, err := net.Listen("tcp", "127.0.0.1:8736")
+	netListen, err := net.Listen("tcp", "127.0.0.1:8737")
 	utils.CheckErr(err)
 	//only one conn
 	conn, err := netListen.Accept()

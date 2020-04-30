@@ -27,7 +27,7 @@ func main() {
 
 	//----------start client---------------
 	//remote tcpAddr(server addr)
-	addr := "127.0.0.1:8736"
+	addr := "127.0.0.1:8737"
 	//read  [operator  key  value] from commandline
 	oreader := bufio.NewReader(os.Stdin)
 	tcpAddr, err := net.ResolveTCPAddr("tcp", addr)
