@@ -49,27 +49,20 @@ ProjectName and Description
 
 # 🚀 功能
 
-- [x] [高性能](#-性能测试) 的基于多线程/Go程网络模型的 event-loop 事件驱动
-- [x] 内置 Round-Robin 轮询负载均衡算法
-- [x] 内置 goroutine 池，由开源库 [ants](https://github.com/panjf2000/ants) 提供支持
-- [x] 内置 bytes 内存池，由开源库 [pool](https://github.com/gobwas/pool/) 提供支持
-- [x] 简洁的 APIs
-- [x] 基于 Ring-Buffer 的高效内存利用
-- [x] 支持多种网络协议：TCP、UDP、Unix Sockets
-- [x] 支持两种事件驱动机制：Linux 里的 epoll 以及 FreeBSD 里的 kqueue
-- [x] 支持异步写操作
-- [x] 灵活的事件定时器
-- [x] SO_REUSEPORT 端口重用
-- [x] 内置多种编解码器，支持对 TCP 数据流分包：LineBasedFrameCodec, DelimiterBasedFrameCodec, FixedLengthFrameCodec 和 LengthFieldBasedFrameCodec，参考自 [netty codec](https://github.com/netty/netty/tree/netty-4.1.43.Final/codec/src/main/java/io/netty/handler/codec)，而且支持自定制编解码器
-- [x] 支持 Windows 平台，基于 ~~IOCP 事件驱动机制~~ Go 标准网络库
-- [ ] 加入更多的负载均衡算法：随机、最少连接、一致性哈希等等
-- [ ] 支持 TLS
-- [ ] 实现 `gnet` 客户端
-
-
-
-
-
+- [x] 支持数据类型：string,list,set,sortedSet
+- [x] Reactor 模式
+- [x] 持久化机制：支持RDB和AOF
+- [x] 支持集群
+- [x] 支持超时/缓存
+- [x] 
+- [x]
+- [x]
+- [x]
+- [x]
+- [x]
+- [x]
+- [x]
+- [x]
 
 
 
