@@ -3,12 +3,14 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"gKV/src/client"
+	"gKV/src"
 	"gKV/utils"
 	"log"
 	"net"
 	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 )
 
 //socket client based on TCP
@@ -18,6 +20,12 @@ func init() {
 }
 
 func main() {
+	//----------monitor signal to exit gracefully----------
+	sigC := make(chan os.Signal)
+	signal.Notify(sigC, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM, syscall.SIGSTOP)
+	go src.GracefullyExit(sigC)
+
+	//----------start client---------------
 	//remote tcpAddr(server addr)
 	addr := "127.0.0.1:8736"
 	//read  [operator  key  value] from commandline
@@ -40,8 +48,8 @@ func main() {
 		//delete '\n' in operation
 		operation = strings.Replace(operation, "\n", "", -1)
 		//send operation
-		client.Send2Server(operation, conn)
-		res := client.ReceiveFromServer(conn)
+		src.Send2Server(operation, conn)
+		res := src.ReceiveFromServer(conn)
 		if len(res) == 0 {
 			fmt.Println(utils.ERR_NIL)
 		} else {

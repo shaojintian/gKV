@@ -2,18 +2,29 @@ package main
 
 import (
 	"fmt"
-	"gKV/src/server"
+	"gKV/src"
 	"gKV/utils"
 	"log"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func init() {
 	log.SetFlags(log.Ldate | log.Lshortfile)
+	//init global map
+	src.GlobalMap = make(map[string]string, src.MAP_INIT_SIZE)
 }
 
 func main() {
-	//var res string
+
+	//----------monitor signal to exit gracefully----------
+	sigC := make(chan os.Signal)
+	signal.Notify(sigC, syscall.SIGINT, syscall.SIGHUP, syscall.SIGTERM, syscall.SIGSTOP)
+	go src.GracefullyExit(sigC)
+
+	//----------start server-------------------------------
 	//listen port
 	netListen, err := net.Listen("tcp", "127.0.0.1:8736")
 	utils.CheckErr(err)
@@ -24,6 +35,6 @@ func main() {
 		fmt.Println("server listening...")
 		conn, err := netListen.Accept()
 		utils.CheckErr(err)
-		server.Handle(conn)
+		src.Handle(conn)
 	}
 }
