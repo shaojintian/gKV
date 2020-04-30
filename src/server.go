@@ -4,6 +4,7 @@ import (
 	"gKV/utils"
 	"log"
 	"net"
+	"strconv"
 	"strings"
 	//"reflect"
 )
@@ -50,29 +51,26 @@ func doHandle(operation []byte) string {
 			res = doSet(opts[1:])
 
 			//lpush listName string
-		}else if opts[0]=="lpush" || opts[0]=="LPUSH" {
+		} else if opts[0] == "lpush" || opts[0] == "LPUSH" {
 			res = lpush(opts[1:])
 		}
 	} else if len(opts) == 2 {
 		if opts[0] == "get" {
 			res = doGet(opts[1:])
 			//llen [name]
-		}else if opts[0] == "llen"||opts[0]=="LLEN"{
-			res = string(llen(opts[1:]))
+		} else if opts[0] == "llen" || opts[0] == "LLEN" {
+			res = strconv.Itoa(llen(opts[1:]))
 		}
-	} else if len(opts)==4{
-		//lrange name start end
-		if opts[0]=="lrange"||opts[0]=="LRANGE"{
-			//....
+	} else if len(opts) == 4 {
+		//lrange name start end  [s,e] len== e-s+1
+		if opts[0] == "lrange" || opts[0] == "LRANGE" {
+			res = lrange(opts[1:])
 		}
 	} else {
 		res = "(error) ERR wrong number of arguments for  command"
-		log.Printf("zMap size is:%d\n",zMapSize())
+		log.Printf("zMap size is:%d\n", zMapSize())
 		printZMap()
 	}
 
 	return res
 }
-
-
-

@@ -40,6 +40,7 @@ func main() {
 
 	//send data to Server
 	//like
+	fmt.Println("Hello gKV, powered by sjt.")
 	for {
 		//127.0.0.1:xxxx> set k v
 		fmt.Print(addr + "> ")

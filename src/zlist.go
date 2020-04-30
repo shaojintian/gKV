@@ -6,67 +6,64 @@ import (
 	"log"
 	"strconv"
 )
+
 var ZlistCounter map[string]*Zlist
 
 //const ZLIST_CAPACITY uint32 = (1 << 32) - 1 // 2^32 -1
 
-
-type Zlist struct{
+type Zlist struct {
 	name string
-	l *list.List
-
+	l    *list.List
 }
 
-func newZlist(name string)*Zlist{
+func newZlist(name string) *Zlist {
 	return &Zlist{
-		name:name,
-		l:list.New(),
+		name: name,
+		l:    list.New(),
 	}
 }
 
 //[name value(v)]
-func lpush(opts []string) string{
+func lpush(opts []string) string {
 	name := opts[0]
 	v := opts[1]
 	var size int
-	if zlistObj,ok:= ZlistCounter[name];ok{
+	if zlistObj, ok := ZlistCounter[name]; ok {
 		zlistObj.l.PushFront(v)
 		size = zlistObj.l.Len()
 		//maybe bug of old zlistObj
-	}else{
+	} else {
 		zl := newZlist(name)
 		zl.l.PushFront(v)
 		size = zl.l.Len()
-		log.Printf("current zlist:%s size is %d",name,size)
-		ZlistCounter[name]=zl
+		log.Printf("current zlist:%s size is %d", name, size)
+		ZlistCounter[name] = zl
 	}
 
-	return utils.INTEGER+strconv.Itoa(size)
+	return utils.INTEGER + strconv.Itoa(size)
 }
 
 //lrange name start end  [start,end]
-func lrange(opts []string) []interface{}{
+func lrange(opts []string) string {
 
 	name := opts[0]
-	if zlistObj,ok:= ZlistCounter[name];ok{
-		res := make([]interface{}, zlistObj.l.Len())
-		for i:=zlistObj.l.Front();i!=nil;i=i.Next(){
-			res = append(res,i.Value)
+	if zlistObj, ok := ZlistCounter[name]; ok {
+		var res string
+		for i := zlistObj.l.Front(); i != nil; i = i.Next() {
+			res += i.Value.(string) + "\n"
 		}
 		return res
-	}else{
-		return []interface{}{utils.EMPTY_LIST_OR_SET}
+	} else {
+		return utils.EMPTY_LIST_OR_SET
 	}
 }
 
 func llen(opts []string) int {
 	name := opts[0]
-	if zlistObj,ok:= ZlistCounter[name];ok{
+	if zlistObj, ok := ZlistCounter[name]; ok {
 		return zlistObj.l.Len()
-	}else{
+	} else {
 		return 0
 	}
 
 }
-
-
