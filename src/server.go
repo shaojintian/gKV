@@ -38,19 +38,32 @@ func doHandle(operation []byte) string {
 	var res string
 	//handle set/get
 	//delete space in operation begin or end
-	log.Println(operation)
+	//log.Println(operation)
 	opStr := strings.TrimSpace(string(operation))
 	//split opStr set k v
 	opts := strings.Split(opStr, " ")
-	//
+	//print operation like "set key value"
 	log.Println(opStr)
 	if len(opts) == 3 {
+		//set k v
 		if opts[0] == "set" {
 			res = doSet(opts[1:])
+
+			//lpush listName string
+		}else if opts[0]=="lpush" || opts[0]=="LPUSH" {
+			res = lpush(opts[1:])
 		}
 	} else if len(opts) == 2 {
 		if opts[0] == "get" {
-			res = doGet(opts)
+			res = doGet(opts[1:])
+			//llen [name]
+		}else if opts[0] == "llen"||opts[0]=="LLEN"{
+			res = string(llen(opts[1:]))
+		}
+	} else if len(opts)==4{
+		//lrange name start end
+		if opts[0]=="lrange"||opts[0]=="LRANGE"{
+			//....
 		}
 	} else {
 		res = "(error) ERR wrong number of arguments for  command"
@@ -61,19 +74,5 @@ func doHandle(operation []byte) string {
 	return res
 }
 
-func doSet(opts []string) string {
-	GlobalMap[opts[0]] = opts[1]
-	return utils.OK
-}
 
 
-func doGet(opts []string) string {
-	log.Println("k is: "+opts[1])
-	k := opts[1]
-	v, ok := GlobalMap[k]
-	log.Printf("ok is:%v\n",ok)
-	if ok {
-		return v
-	}
-	return utils.ERR_NIL
-}

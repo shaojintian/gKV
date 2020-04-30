@@ -15,8 +15,8 @@ func init() {
 	log.SetFlags(log.Ldate | log.Lshortfile)
 	//init global map
 	src.GlobalMap = make(map[string]string, src.MAP_INIT_SIZE)
-	//init global list
-	src.GlobalList = make([]string, src.LIST_INIT_SIZE)
+	//init zlistCounter
+	src.ZlistCounter = make(map[string]*src.Zlist)
 	//init global set
 }
 
