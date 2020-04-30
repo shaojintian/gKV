@@ -1,6 +1,6 @@
-# ProjectName
+# gKV
 
-ProjectName and Description
+A lightweight k-v store based on golang and takes example by redis(C code version).
 
 <!-- PROJECT SHIELDS -->
 
@@ -25,7 +25,7 @@ ProjectName and Description
 <br />
 
 <p align="center">
-  <a href="https://github.com/shaojintian/Best_README_template/">
+  <a href="https://github.com/shaojintian/gKV/">
     <img src="docs/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -33,14 +33,14 @@ ProjectName and Description
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/shaojintian/Best_README_template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/shaojintian/gKV"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/shaojintian/Best_README_template"> View Demo</a>
+    <a href="https://github.com/shaojintian/gKV"> View Demo</a>
     ·
-    <a href="https://github.com/shaojintian/Best_README_template/issues">Report Bug</a>
+    <a href="https://github.com/shaojintian/gKV/issues">Report Bug</a>
     ·
-    <a href="https://github.com/shaojintian/Best_README_template/issues">Request Feature</a>
+    <a href="https://github.com/shaojintian/gKV/issues">Request Feature</a>
   </p>
 
 </p>
@@ -64,6 +64,8 @@ ProjectName and Description
 - [x]
 - [x]
 
+# 🌐 展望
+1. 可以考虑之后用共享内存/整理内存算法提高内存利用率，因为不整理会有内存碎片(golang内存管理不佳)
 
 
 ## 目录
@@ -86,13 +88,13 @@ ProjectName and Description
 
 ### 上手指南
 
-请将所有链接中的“shaojintian/Best_README_template”改为“your_github_name/your_repository”
+请将所有链接中的“shaojintian/gKV”改为“your_github_name/your_repository”
 
 
 
 ###### 开发前的配置要求
 
-1. xxxxx x.x.x
+1. golang >=1.12.5
 2. xxxxx x.x.x
 
 ###### **安装步骤**
@@ -101,40 +103,29 @@ ProjectName and Description
 2. Clone the repo
 
 ```sh
-git clone https://github.com/shaojintian/Best_README_template.git
+git clone https://github.com/shaojintian/gKV.git
+```
+3. Start server && client
+```go
+go run server_main.go
+go run client_main.go
+```
+run each command in different terminal
+
+4. How to terminate client/server
+
+```bash
+press on Ctrl+C to close client/server gracefully.
 ```
 
 ### 文件目录说明
 
 eg:
 
-```
-filetree 
-├── ARCHITECTURE.md
-├── LICENSE.txt
-├── README.md
-├── /account/
-├── /bbs/
-├── /docs/
-│  ├── /rules/
-│  │  ├── backend.txt
-│  │  └── frontend.txt
-├── manage.py
-├── /oa/
-├── /static/
-├── /templates/
-├── useless.md
-└── /util/
-
-```
-
-
-
-
 
 ### 开发的架构 
 
-请阅读[ARCHITECTURE.md](https://github.com/shaojintian/Best_README_template/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
+请阅读[ARCHITECTURE.md](https://github.com/shaojintian/gKV/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
 
 ### 部署
 
@@ -189,7 +180,7 @@ E-mail: sjt@hnu.edu.cn
 
 ### 版权说明
 
-该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt)
+该项目签署了MIT 授权许可，详情请参阅 [LICENSE.txt](https://github.com/shaojintian/gKV/blob/master/LICENSE.txt)
 
 ### 鸣谢
 
@@ -210,16 +201,16 @@ If you like this project and want to sponsor the author, you can reward the auth
 </figure>
 <!-- links -->
 
-[your-project-path]: shaojintian/Best_README_template
-[contributors-shield]: https://img.shields.io/github/contributors/shaojintian/Best_README_template.svg?style=flat-square
-[contributors-url]: https://github.com/shaojintian/Best_README_template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/shaojintian/Best_README_template.svg?style=flat-square
-[forks-url]: https://github.com/shaojintian/Best_README_template/network/members
-[stars-shield]: https://img.shields.io/github/stars/shaojintian/Best_README_template.svg?style=flat-square
-[stars-url]: https://github.com/shaojintian/Best_README_template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/shaojintian/Best_README_template.svg?style=flat-square
-[issues-url]: https://img.shields.io/github/issues/shaojintian/Best_README_template.svg
-[license-shield]: https://img.shields.io/github/license/shaojintian/Best_README_template.svg?style=flat-square
-[license-url]: https://github.com/shaojintian/Best_README_template/blob/master/LICENSE.txt
+[your-project-path]: shaojintian/gKV
+[contributors-shield]: https://img.shields.io/github/contributors/shaojintian/gKV.svg?style=flat-square
+[contributors-url]: https://github.com/shaojintian/gKV/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/shaojintian/gKV.svg?style=flat-square
+[forks-url]: https://github.com/shaojintian/gKV/network/members
+[stars-shield]: https://img.shields.io/github/stars/shaojintian/gKV.svg?style=flat-square
+[stars-url]: https://github.com/shaojintian/gKV/stargazers
+[issues-shield]: https://img.shields.io/github/issues/shaojintian/gKV.svg?style=flat-square
+[issues-url]: https://img.shields.io/github/issues/shaojintian/gKV.svg
+[license-shield]: https://img.shields.io/github/license/shaojintian/gKV.svg?style=flat-square
+[license-url]: https://github.com/shaojintian/gKV/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/shaojintian
