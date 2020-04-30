@@ -5,16 +5,16 @@ import (
 	"log"
 	"net"
 	"strings"
-	"reflect"
+	//"reflect"
 )
 
 func ReceiveFromClient(conn net.Conn) []byte {
 	log.Println("start read data from client ...")
 	operation := make([]byte, 1024)
-	_, err := conn.Read(operation)
+	n, err := conn.Read(operation)
 	utils.CheckErr(err)
 	log.Println("read operation:" + string(operation) + " FROM client successfully!")
-	return operation
+	return operation[:n]
 }
 
 func Send2Client(res string, conn net.Conn) {
@@ -38,11 +38,12 @@ func doHandle(operation []byte) string {
 	var res string
 	//handle set/get
 	//delete space in operation begin or end
+	log.Println(operation)
 	opStr := strings.TrimSpace(string(operation))
 	//split opStr set k v
 	opts := strings.Split(opStr, " ")
 	//
-	log.Println(opts)
+	log.Println(opStr)
 	if len(opts) == 3 {
 		if opts[0] == "set" {
 			res = doSet(opts[1:])
@@ -65,11 +66,12 @@ func doSet(opts []string) string {
 	return utils.OK
 }
 
-//bug:cannt get v ?????
+
 func doGet(opts []string) string {
 	log.Println("k is: "+opts[1])
-	v, ok := GlobalMap[opts[1]]
-	log.Println(ok)
+	k := opts[1]
+	v, ok := GlobalMap[k]
+	log.Printf("ok is:%v\n",ok)
 	if ok {
 		return v
 	}
