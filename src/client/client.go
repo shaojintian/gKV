@@ -10,6 +10,7 @@ bio send
 */
 func Send2Server(operation string, conn *net.TCPConn) {
 	//socket write data
+	//log.Println("operation: "+operation)
 	_, err := conn.Write([]byte(operation))
 	utils.CheckErr(err)
 }
@@ -17,10 +18,12 @@ func Send2Server(operation string, conn *net.TCPConn) {
 /*
 bio receive
 */
-func ReceiveFromServer(conn *net.TCPConn) []byte {
+func ReceiveFromServer(conn *net.TCPConn) string {
 	//read data from TCPConn
-	var res []byte
-	_, err := conn.Read(res)
+	res := make([]byte, 1024)
+	n, err := conn.Read(res)
 	utils.CheckErr(err)
-	return res
+	//log.Printf(string(res[:n]))
+	utils.CheckErr(err)
+	return string(res[:n])
 }

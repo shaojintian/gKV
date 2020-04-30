@@ -6,7 +6,7 @@ import (
 )
 
 func ReceiveFromClient(conn net.Conn) []byte {
-	var operation []byte
+	operation := make([]byte, 1024)
 	_, err := conn.Read(operation)
 	utils.CheckErr(err)
 	return operation
