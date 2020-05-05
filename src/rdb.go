@@ -1,6 +1,9 @@
 package src
 
-
+import (
+	"gKV/utils"
+	"log"
+)
 
 type redisObject struct {
 	Type     uint
@@ -11,12 +14,11 @@ type redisObject struct {
 }
 type robj redisObject
 
-func newRobj()*robj{
+func newRobj() *robj {
 	return &robj{
 		//....
 	}
 }
-
 
 func rdbSaveType(t *rune) int {
 	return 0
@@ -51,9 +53,7 @@ func rdbSaveToSlavesSockets() {
 func rdbRemoveTempFile(childpid pid_t) {
 
 }
-func rdbSave(filename *rune) {
 
-}
 func rdbSaveObject(o *robj) int64 {
 	return 0
 }
@@ -71,4 +71,20 @@ func rdbSaveKeyValuePair(key, val *robj, expiretime, now int64) {
 func rdbLoadStringObject() *robj {
 
 	return newRobj()
+}
+
+func saveCommand() string {
+	filename := "default.rdb"
+	if rdbSave(filename) == utils.OK {
+		return utils.OK
+	} else {
+		return utils.ERR_SAVE
+	}
+}
+
+func rdbSave(filename string) string {
+	var (
+		tmpfile [256]rune
+		cwd     [utils.MAX_PATH_LEN]rune
+	)
 }
