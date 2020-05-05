@@ -53,13 +53,20 @@ func doHandle(operation []byte) string {
 			//lpush listName string
 		} else if opts[0] == "lpush" || opts[0] == "LPUSH" {
 			res = lpush(opts[1:])
+			//append k v
+		} else if checkOpt("append", opts) {
+			res = doAppend(opts[1:])
 		}
 	} else if len(opts) == 2 {
+		// get k
 		if opts[0] == "get" {
 			res = doGet(opts[1:])
 			//llen [name]
 		} else if opts[0] == "llen" || opts[0] == "LLEN" {
 			res = strconv.Itoa(llen(opts[1:]))
+			//del k
+		} else if opts[0] == "del" || opts[0] == "DEL" {
+			res = doDel(opts[1:])
 		}
 	} else if len(opts) == 4 {
 		//lrange name start end  [s,e] len== e-s+1
@@ -73,4 +80,11 @@ func doHandle(operation []byte) string {
 	}
 
 	return res
+}
+
+func checkOpt(opt string, opts []string) bool {
+	if opts[0] == opt || opts[0] == strings.ToUpper(opt) {
+		return true
+	}
+	return false
 }
