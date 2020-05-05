@@ -64,6 +64,14 @@ A lightweight k-v store based on golang and takes example by redis(C code versio
 - [x]
 - [x]
 
+# 🏃‍ 进度
+1. 完成set,get,del,lpush,llen,lrange,append
+2. 正在做： RDB and AOF
+
+# 🤜 难点
+1. 传输数据make([]byte,len)==[0,0,0,0,0,...,0]  需要截取[:n]否则会有冗余的0
+2. conn,err := netListen.Accept()只接受一次连接
+3. 优雅接受signal：起一个goroutine，因为监听signal不能阻塞主goroutine，让它在新的goroutine中阻塞等待，一但有信号再经过cpu调度处理signal
 # 🌐 展望
 1. 可以考虑之后用共享内存/整理内存算法提高内存利用率，因为不整理会有内存碎片(golang内存管理不佳)
 

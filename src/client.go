@@ -5,6 +5,24 @@ import (
 	"net"
 )
 
+//-------------Global variable-------------------
+var Client = newClient()
+
+type gkvClient struct {
+	id         int
+	operations []byte
+
+	//save operation
+
+}
+
+func newClient() *gkvServer {
+	return &gkvServer{
+		id:         1024,
+		operations: make([]byte, 1024),
+	}
+}
+
 /*
 bio send
 */

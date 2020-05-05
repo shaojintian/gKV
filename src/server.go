@@ -6,8 +6,32 @@ import (
 	"net"
 	"strconv"
 	"strings"
+	"time"
 	//"reflect"
 )
+
+//-------------Global variable-------------------
+var Server = newServer()
+
+type gkvServer struct {
+	id         int
+	operations []byte
+
+	//save operation
+	dirty            int
+	lastSave         time.Time
+	lastBgSaveStatus string
+}
+
+func newServer() *gkvServer {
+	return &gkvServer{
+		id:               1024,
+		operations:       make([]byte, 1024),
+		dirty:            -1,
+		lastSave:         nil,
+		lastBgSaveStatus: nil,
+	}
+}
 
 func ReceiveFromClient(conn net.Conn) []byte {
 	log.Println("start read data from client ...")

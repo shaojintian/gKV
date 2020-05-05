@@ -1,8 +1,10 @@
 package src
 
 import (
+	"fmt"
 	"gKV/utils"
 	"log"
+	"os"
 )
 
 type redisObject struct {
@@ -83,8 +85,29 @@ func saveCommand() string {
 }
 
 func rdbSave(filename string) string {
-	var (
-		tmpfile [256]rune
-		cwd     [utils.MAX_PATH_LEN]rune
-	)
+	cwd := make([]rune, 0, utils.MAX_PATH_LEN)
+	//init tmpfile
+	tmpfile := fmt.Sprintf("temp-%d.rdb", os.Getpid())
+	//open f
+	fp, err := os.Open(tmpfile)
+	utils.CheckErr(err)
+	//must close file
+	defer fp.Close()
+	if fp == nil {
+		return utils.ERR_FILE
+	}
+	//do rdbSave
+	if doRdbSave() == utils.ERR_FILE {
+		//delete file
+		err := os.Remove(tmpfile)
+		utils.CheckErr(err)
+		return utils.ERR_FILE
+	}
+	//log
+	log.Println("DB saved on disk")
+
+}
+
+func doRdbSave() string {
+
 }

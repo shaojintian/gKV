@@ -11,6 +11,7 @@ const (
 	INTEGER           string = "(integer) "
 	EMPTY_LIST_OR_SET string = "(empty list or set)"
 	ERR_SAVE          string = "(err rdb save)"
+	ERR_FILE          string = "(err file operation)"
 
 	//other
 	MAX_PATH_LEN int = 1024
