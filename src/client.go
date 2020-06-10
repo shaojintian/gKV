@@ -19,7 +19,7 @@ type gkvClient struct {
 	dictId int
 
 	// 客户端的名字
-	robj *name             /* As set by CLIENT SETNAME */
+	name           *gkvObject  /* As set by CLIENT SETNAME */
 
 	// 查询缓冲区
 	sds querybuf
