@@ -57,12 +57,7 @@ A lightweight k-v store based on golang and takes example by redis(C code versio
 - [x] API名称完美复刻redis，降低学习成本
 - [x] 优雅退出：client/server接受sigxxx信号结束，并执行持久化存盘
 - [x] 支持订阅发布
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+
 
 # 🏃‍ 进度
 1. 完成set,get,del,lpush,llen,lrange,append
