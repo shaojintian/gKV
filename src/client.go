@@ -22,16 +22,16 @@ type gkvClient struct {
 	name           *gkvObject  /* As set by CLIENT SETNAME */
 
 	// 查询缓冲区
-	sds querybuf
+	queryBuf	   *string
 
 	// 查询缓冲区长度峰值
-	size_t querybuf_peak   /* Recent (100ms or more) peak of querybuf size */
+	querybufPeak   size_t/* Recent (100ms or more) peak of querybuf size */
 
 	// 参数数量
-	int argc
+	argc			int
 
 	// 参数对象数组
-	robj **argv
+	argv			**gkvObject
 
 	// 记录被客户端执行的命令
 	struct redisCommand *cmd, *lastcmd
