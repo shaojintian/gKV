@@ -106,8 +106,12 @@ func rdbSave(filename string) string {
 	//log
 	log.Println("DB saved on disk")
 
+	return ""
 }
 
 func doRdbSave() string {
 
+	return ""
 }
+
+

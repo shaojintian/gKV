@@ -1,6 +1,41 @@
 package src
 
 /*
+* 跳跃表
+ */
+type zskiplist struct {
+
+	// 表头节点和表尾节点
+	header,	tail	*zskiplistNode
+
+	// 表中节点的数量
+	length	uint32
+
+	// 表中层数最大的节点的层数
+	level	int
+
+}
+
+type zskiplistNode struct {
+	// 成员对象
+	obj *gkvObject
+
+	// 分值
+	score double
+
+	// 后退指针
+	backward *zskiplistNode
+
+	// 层
+	zskiplistLevel struct {
+		// 前进指针
+		forward *zskiplistNode
+
+		// 跨度
+		span uint
+	}
+}
+/*
 * 事务命令
  */
 type multiCmd struct {
@@ -56,4 +91,33 @@ type clientBufferLimitsConfig struct {
 	// 软限制时限
 	softLimitSeconds	time_t
 }
+/* The redisOp structure defines a Redis Operation, that is an instance of
+ * a command with an argument vector, database ID, propagation target
+ * (REDIS_PROPAGATE_*), and command pointer.
+ *
+ * redisOp 结构定义了一个 Redis 操作，
+ * 它包含指向被执行命令的指针、命令的参数、数据库 ID 、传播目标（REDIS_PROPAGATE_*）。
+ *
+ * Currently only used to additionally propagate more commands to AOF/Replication
+ * after the propagation of the executed command.
+ *
+ * 目前只用于在传播被执行命令之后，传播附加的其他命令到 AOF 或 Replication 中。
+ */
+type redisOp struct {
 
+	// 参数
+	argv	**robj
+
+	// 参数数量、数据库 ID 、传播目标
+	argc,	dbid,	target	int
+
+	// 被执行命令的指针
+	cmd	*gkvCommand
+
+}
+
+
+type gkvOpArray struct {
+	ops	*redisOp
+	numops	int
+}

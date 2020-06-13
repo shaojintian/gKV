@@ -27,8 +27,8 @@ func newServer() *gkvServer {
 		id:               1024,
 		operations:       make([]byte, GKV_RUN_ID_SIZE+1),
 		dirty:            -1,
-		lastSave:         nil,
-		lastBgSaveStatus: nil,
+		lastSave:         time.Now(),
+		lastBgSaveStatus: "",
 	}
 }
 

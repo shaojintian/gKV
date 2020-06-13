@@ -121,7 +121,7 @@ type clusterNode struct {
 	// 位的值为 1 表示槽正由本节点处理，值为 0 则表示槽并非本节点处理
 	// 比如 slots[0] 的第一个位保存了槽 0 的保存情况
 	// slots[0] 的第二个位保存了槽 1 的保存情况，以此类推
-	slots[REDIS_CLUSTER_SLOTS/8]	urune /* slots handled by this node */
+	slots	[]uint32 /* slots handled by this node */
 
 	// 该节点负责处理的槽数量
 	numslots	int   /* Number of slots handled by this node */
@@ -166,3 +166,25 @@ type clusterNode struct {
 	failReports	*list.List         /* List of nodes signaling this as failing */
 
 }
+
+/* clusterLink encapsulates everything needed to talk with a remote node. */
+// clusterLink 包含了与其他节点进行通讯所需的全部信息
+type clusterLink struct {
+
+	// 连接的创建时间
+	ctime	mstime_t             /* Link creation time */
+
+	// TCP 套接字描述符
+	fd	int                     /* TCP socket file descriptor */
+
+	// 输出缓冲区，保存着等待发送给其他节点的消息（message）。
+	sndbuf	string                 /* Packet send buffer */
+
+	// 输入缓冲区，保存着从其他节点接收到的消息。
+	rcvbuf	string                 /* Packet reception buffer */
+
+	// 与这个连接相关联的节点，如果没有的话就为 NULL
+	node	*clusterNode   /* Node related to this link if any, or NULL */
+
+}
+
