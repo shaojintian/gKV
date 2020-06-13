@@ -16,7 +16,6 @@ var Server = newServer()
 type gkvServer struct {
 	id         int
 	operations []byte
-
 	//save operation
 	dirty            int
 	lastSave         time.Time
@@ -26,7 +25,7 @@ type gkvServer struct {
 func newServer() *gkvServer {
 	return &gkvServer{
 		id:               1024,
-		operations:       make([]byte, 1024),
+		operations:       make([]byte, GKV_RUN_ID_SIZE+1),
 		dirty:            -1,
 		lastSave:         nil,
 		lastBgSaveStatus: nil,
